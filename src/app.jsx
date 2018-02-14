@@ -8,7 +8,7 @@ class Component extends React.Component{
     this.state = {
       name: 'Y'
     }
-    this.handleClick = this.handleClick.bind(this)
+    // this.handleClick = this.handleClick.bind(this)
     // 也可以使用箭头函数解决这个问题
   }
   render(){
@@ -36,7 +36,35 @@ class Component extends React.Component{
   }
 }
 
+class Title extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(props){
+    // return <h1>{this.props.title}</h1>
+    
+    // 使用children
+    return <h1>{this.props.children}</h1>
+  }
+}
+class App extends React.Component{
+  render(){
+    return (
+      <div>
+        {/* <h1>App</h1> */}
+        {/* <Title title="hello world999"/> */}
+        <Title>
+          <span>1</span>
+          <p>2</p>
+        </Title>
+        <hr/>
+        <Component/>
+      </div>
+    )
+  }
+}
+
 ReactDOM.render(
-  <Component/>,
+  <App/>,
   document.getElementById('app')
 )
