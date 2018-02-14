@@ -52,19 +52,21 @@ import './index.scss'
 // ES6的组件
 class ES6Component extends React.Component{
   constructor(props){
+    // props是只读的, 不能被改变
     super(props);
-    this.state = {
-      name: 'R'
-    }
+    // this.state = {
+    //   name: 'R'
+    // }
   }
   render(){
     // 修改state
-    setTimeout(()=>{
-      this.setState({
-        name: 'S'
-      })
-    },2000)
-    return <h2>你好,{this.state.name}</h2>
+    // setTimeout(()=>{
+    //   this.setState({
+    //     name: 'S'
+    //   })
+    // },2000)
+    // return <h2>你好,{this.state.name}</h2>
+    return <h2>hello,{this.props.name}</h2>
   }
 }
 
@@ -72,7 +74,7 @@ class ES6Component extends React.Component{
 ReactDOM.render(
   <div>
     {/* <Component/> */}
-    <ES6Component/>
+    <ES6Component name="Q"/>
   </div>,
   document.getElementById('app')
 )
