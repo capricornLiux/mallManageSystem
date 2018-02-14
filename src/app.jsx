@@ -2,69 +2,49 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // 事件的处理
-class Component extends React.Component{
+class Child extends React.Component{
   constructor(props){
     super(props);
-    this.state = {
-      name: 'Y'
-    }
-    // this.handleClick = this.handleClick.bind(this)
-    // 也可以使用箭头函数解决这个问题
   }
   render(){
     return (
       <div>
-        <div>I am {this.state.name}</div>
-        {/* <button onClick={this.handleClick}>改变名字</button> */}
+        <div>{this.props.bgColor}</div>
         <button onClick={(e)=>{this.handleClick(e)}}>改变名字</button>
-
-        <input type="text" onChange={(e)=>{this.handleValueChange(e)}}/>
       </div>
     )
   }
   handleClick(){
-    alert('handleClick');
-
-    this.setState({
-      name:'Z'
-    })
-  }
-  handleValueChange(e){
-    this.setState({
-      name: e.target.value
-    })
+    this.props.colorChange('#333')
   }
 }
 
-class Title extends React.Component{
+class Father extends React.Component{
   constructor(props){
     super(props);
+    this.state = {
+      bgColor: '#888'
+    }
   }
   render(props){
-    // return <h1>{this.props.title}</h1>
-    
-    // 使用children
-    return <h1>{this.props.children}</h1>
-  }
-}
-class App extends React.Component{
-  render(){
     return (
-      <div>
-        {/* <h1>App</h1> */}
-        {/* <Title title="hello world999"/> */}
-        <Title>
-          <span>1</span>
-          <p>2</p>
-        </Title>
-        <hr/>
-        <Component/>
+      <div style={{backgroundColor: this.state.bgColor}}>
+        <p>父组件</p>
+        <br/>
+
+        <p>父组件中的子组件部分</p>
+        <Child bgColor={this.state.bgColor} colorChange={(color)=>{this.onColorChange(color)}}/>
       </div>
     )
+  }
+  onColorChange(color){
+    this.setState({
+      bgColor: color
+    })
   }
 }
 
 ReactDOM.render(
-  <App/>,
+  <Father/>,
   document.getElementById('app')
 )
