@@ -78,7 +78,17 @@ module.exports = {
         ]
     },
     devServer: {
-        port: 9999
+        port: 9999,
+        historyApiFallback: {
+            index: '/dist/'
+            // 404或者其他访问不到的页面会到这里
+        }
+    },
+    resolve: {
+        alias: {
+            page: path.resolve(__dirname, 'src/page'),
+            component: path.resolve(__dirname, 'src/component')
+        }
     }
 
 }
