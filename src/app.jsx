@@ -1,21 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// 事件的处理
-class Child extends React.Component{
+// 兄弟组件之间的传值
+class Child1 extends React.Component{
   constructor(props){
     super(props);
   }
   render(){
     return (
       <div>
-        <div>{this.props.bgColor}</div>
-        <button onClick={(e)=>{this.handleClick(e)}}>改变名字</button>
+        <h2>Child1</h2>
+        <button onClick={(e)=>{this.handleClick(e)}}>改变child2的color</button>
       </div>
     )
   }
   handleClick(){
-    this.props.colorChange('#333')
+    this.props.onChangeChild2BgColor('#333')
+  }
+}
+
+class Child2 extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+    return (
+      <div style={{backgroundColor: this.props.child2BgColor}}>
+        <h2>Child2</h2>
+        <p>child2的颜色{this.props.child2BgColor}</p>
+      </div>
+    )
   }
 }
 
@@ -23,23 +37,24 @@ class Father extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      bgColor: '#888'
+      child2BgColor: '#666'
     }
   }
   render(props){
     return (
-      <div style={{backgroundColor: this.state.bgColor}}>
+      <div>
         <p>父组件</p>
         <br/>
 
         <p>父组件中的子组件部分</p>
-        <Child bgColor={this.state.bgColor} colorChange={(color)=>{this.onColorChange(color)}}/>
+        <Child1 onChangeChild2BgColor={(color)=>{this.changeChild2BgColor(color)}}/>
+        <Child2 child2BgColor={this.state.child2BgColor}/>
       </div>
     )
   }
-  onColorChange(color){
+  changeChild2BgColor(color){
     this.setState({
-      bgColor: color
+      child2BgColor: color
     })
   }
 }
