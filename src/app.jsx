@@ -1,65 +1,59 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// 兄弟组件之间的传值
-class Child1 extends React.Component{
-  constructor(props){
-    super(props);
-  }
-  render(){
-    return (
-      <div>
-        <h2>Child1</h2>
-        <button onClick={(e)=>{this.handleClick(e)}}>改变child2的color</button>
-      </div>
-    )
-  }
-  handleClick(){
-    this.props.onChangeChild2BgColor('#333')
-  }
-}
+// import {HashRouter as Router, Route, Link} from "react-router-dom";
+// http://localhost:9999/dist/#/a
 
-class Child2 extends React.Component{
-  constructor(props){
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// http://localhost:9999/a 直接复制粘贴地址在新标签中访问的话,没有结果,直接请求到后端
+
+// BrowserRouter h5实现; hashRouter 哈希实现; route 路由规则; switch 路由多次匹配; Link 路由跳转;
+// NavLink; Redirect
+
+class A extends React.Component {
+  constructor(props) {
     super(props);
   }
-  render(){
+  render() {
     return (
-      <div style={{backgroundColor: this.props.child2BgColor}}>
-        <h2>Child2</h2>
-        <p>child2的颜色{this.props.child2BgColor}</p>
-      </div>
+      <div>a</div>
     )
   }
 }
 
-class Father extends React.Component{
-  constructor(props){
+class B extends React.Component {
+  constructor(props) {
     super(props);
-    this.state = {
-      child2BgColor: '#666'
-    }
   }
-  render(props){
+  render() {
     return (
-      <div>
-        <p>父组件</p>
-        <br/>
-
-        <p>父组件中的子组件部分</p>
-        <Child1 onChangeChild2BgColor={(color)=>{this.changeChild2BgColor(color)}}/>
-        <Child2 child2BgColor={this.state.child2BgColor}/>
-      </div>
+      <div>b</div>
     )
   }
-  changeChild2BgColor(color){
-    this.setState({
-      child2BgColor: color
-    })
+}
+
+class Wrapper extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <Link to="/a">组件a</Link>
+        <Link to="/b">组件b</Link>
+        {this.props.children}
+      </div>
+    )
   }
 }
 
 ReactDOM.render(
-  <Father/>,
-  document.getElementById('app')
-)
+  <Router>
+    <Wrapper>
+      {/* <A/> */}
+      {/* <B/> */}
+      <Route path='/a' component={A}/>
+      <Route path='/b' component={B}/>
+    </Wrapper>
+  </Router>,
+document.getElementById('app'))
