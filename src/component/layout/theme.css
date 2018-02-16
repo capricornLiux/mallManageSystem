@@ -423,13 +423,18 @@ footer p {
 
 .navbar-brand b {
     color: #2DAFCB;
+    margin-right: 10px;
 }
 
 .top-navbar .nav>li {
     position: relative;
     display: inline-block;
     margin: 0px;
-    padding: 0px;
+    padding: 0 10px;
+}
+
+.top-navbar .nav>li:hover .dropdown-menu {
+    display: block;
 }
 
 .top-navbar .nav>li>a {
@@ -449,7 +454,12 @@ footer p {
 
 .top-navbar .dropdown-menu {
     min-width: 230px;
+    margin: 0;
     border-radius: 0 0 4px 4px;
+}
+
+.dropdown-menu>li>a {
+    cursor: pointer;
 }
 
 .top-navbar .dropdown-menu>li>a:hover,
@@ -561,6 +571,11 @@ ul.nav.nav-second-level.collapse.in {
     margin-right: 2px;
 }
 
+.top-navbar .nav>li>a>span {
+    color: #666;
+    margin-right: 10px;
+}
+
 .top-navbar .navbar-brand:hover {
     color: #2DAFCB;
     background-color: rgb(43, 46, 51);
@@ -617,11 +632,10 @@ ul.nav.nav-second-level.collapse.in {
 ------------------------------------------------*/
 
 @media(max-width:768px) {
-
-    .top-navbar{
+    .top-navbar {
         position: relative;
     }
-    .top-navbar .navbar-brand{
+    .top-navbar .navbar-brand {
         width: 100%;
     }
     .navbar-side {
@@ -634,8 +648,6 @@ ul.nav.nav-second-level.collapse.in {
     .navbar {
         border-radius: 0px;
     }
-
-
     #page-wrapper {
         margin: 0;
         padding: 15px 30px;
