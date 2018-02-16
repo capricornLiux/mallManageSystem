@@ -1,5 +1,11 @@
 import React from 'react';
 import './index.scss';
+import Util from 'util/index.jsx';
+import UserService from 'service/user-service.jsx';
+
+const util = new Util();
+const userService = new UserService();
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -11,13 +17,27 @@ class Login extends React.Component {
             [key] : value
         })
     }
+    // 点击登录按钮
+    clickLogin(){
+        // alert('clickLogin');
+        userService.login({
+            username: this.state.username,
+            password: this.state.password
+        }).then((res)=>{
+            console.log('res');
+            console.log(res);
+        }).catch((err)=>{
+            console.log('err');
+            console.log(err);
+        })
+    }
     render() {
         return (
             <div className="col-md-4 col-md-offset-4">
                 <div className="panel panel-default login-panel">
                     <div className="panel-heading text-center">欢迎登录</div>
                     <div className="panel-body">
-                    <form>
+                    <div>
                         <div className="form-group">
                             {/* for是关键词, 使用htmlfor */}
                             <input type="text" 
@@ -37,8 +57,12 @@ class Login extends React.Component {
                                 onChange={e=>{this.inputChange(e)}}/>
                         </div>
                         
-                        <button type="submit" className="btn btn-primary btn-lg btn-block">登录</button>
-                    </form>
+                        <button 
+                            className="btn btn-primary btn-lg btn-block"
+                            onClick={e=>{this.clickLogin(e)}}>
+                            登录
+                        </button>
+                    </div>
                     </div>
                 </div>
             </div>
