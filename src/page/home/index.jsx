@@ -1,10 +1,9 @@
 import React from 'react';
-import './index.css'
+// import './index.css'
 class Home extends React.Component{
     render(){
         return (
-            <div>
-                Home
+            <div id="page-wrapper">
                 <button className="btn btn-primary">button</button>
             </div>
         )

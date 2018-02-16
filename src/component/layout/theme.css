@@ -10,33 +10,31 @@ http://creativecommons.org/licenses/by/3.0/
 
 body {
     font-family: 'Open Sans', sans-serif;
+    background: #f3f3f3;
 }
 
 #wrapper {
     width: 100%;
-    background: #2b2e33;
+    /* background: #2b2e33; */
 }
 
 #page-wrapper {
-    padding: 15px 15px;
-    min-height: 600px;
-    background: #f3f3f3;
+    /* padding: 15px 15px; */
+    margin: 0 0 0 260px;
+    padding: 15px 30px;
+    /* min-height: 600px; */
 }
 
-#page-inner {
+/* #page-inner {
     width: 100%;
     margin: 10px 20px 10px 0px;
     background-color: transparent;
     padding: 10px;
     min-height: 1200px;
-}
+} */
 
 .text-center {
     text-align: center;
-}
-
-.no-boder {
-    border: 1px solid #f3f3f3;
 }
 
 h1,
@@ -94,7 +92,11 @@ p {
     z-index: 1;
     position: fixed;
     width: 260px;
-    top: 80px;
+    /* top: 80px; */
+    background-color: #2b2e33;
+    top: 60px;
+    bottom: 0;
+    overflow-y: auto;
 }
 
 #page-wrapper {
@@ -547,7 +549,7 @@ ul.nav.nav-second-level.collapse.in {
 
 .navbar-side {
     border: none;
-    background-color: transparent;
+    /* background-color: transparent; */
 }
 
 .top-navbar {
@@ -614,25 +616,31 @@ ul.nav.nav-second-level.collapse.in {
     MEDIA QUERIES     
 ------------------------------------------------*/
 
-@media(min-width:768px) {
-    #page-wrapper {
-        margin: 0 0 0 260px;
-        padding: 15px 30px;
-        min-height: 1200px;
+@media(max-width:768px) {
+
+    .top-navbar{
+        position: relative;
+    }
+    .top-navbar .navbar-brand{
+        width: 100%;
     }
     .navbar-side {
         z-index: 1;
-        width: 260px;
+        /* width: 260px; */
+        position: relative;
+        width: 100%;
+        top: 0;
     }
     .navbar {
         border-radius: 0px;
     }
-}
 
-@media(max-width:480px) {
-    .page-header small {
-        display: block;
-        padding-top: 14px;
-        font-size: 19px;
+
+    #page-wrapper {
+        margin: 0;
+        padding: 15px 30px;
+        /* min-height: 1200px; */
+        position: relative;
+        top: 0;
     }
 }
