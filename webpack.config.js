@@ -11,7 +11,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
+            favicon: './favicon.ico'
         }),
         new ExtractTextWebpackPlugin("css/[name].css"),
         // 提出公共模块
