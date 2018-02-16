@@ -14,8 +14,11 @@ class App extends React.Component{
         <Layout>
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Redirect from="*" to="/"/>
+            {/* <Redirect from="*" to="/"/> */}
             {/* You tried to redirect to the same route you're currently on: "/" */}
+
+            <Route exact path="/product" component={Home}/>
+            <Route exact path="/product-category" component={Home}/>
           </Switch>
         </Layout>
       </Router>
