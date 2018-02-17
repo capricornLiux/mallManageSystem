@@ -9,6 +9,19 @@ const userService = new UserService();
 class Login extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            username: '',
+            password: '',
+            redirect: util.getUrlParam('redirect') || '/'
+        }
+    }
+    componentWillMount(){
+        document.title = '登录 - HAPPY MALL'
+    }
+    inputOnKeyUp(e){
+        if(e.keyCode === 13){
+            this.clickLogin();
+        }
     }
     inputChange(e){
         let key = e.target.name;
@@ -19,17 +32,23 @@ class Login extends React.Component {
     }
     // 点击登录按钮
     clickLogin(){
-        // alert('clickLogin');
-        userService.login({
+        let loginInfo = {
             username: this.state.username,
             password: this.state.password
-        }).then((res)=>{
-            console.log('res');
-            console.log(res);
-        }).catch((err)=>{
-            console.log('err');
-            console.log(err);
-        })
+        };
+        let checkLoginInfoResult = userService.checkLoginInfo(loginInfo);
+        if(checkLoginInfoResult.status){
+            userService.login(loginInfo).then((res)=>{
+                // 登录成功,跳转页面
+                this.props.history.push(this.state.redirect);
+            }).catch((errMsg)=>{
+                // 错误提示
+                util.errorTips(errMsg);
+            })
+        } else {
+            util.errorTips(checkLoginInfoResult.msg);
+        }
+        
     }
     render() {
         return (
@@ -45,6 +64,7 @@ class Login extends React.Component {
                                 id="exampleInputEmail1" 
                                 placeholder="请输入用户名"
                                 name="username"
+                                onKeyUp={e=>{this.inputOnKeyUp(e)}}
                                 onChange={e=>{this.inputChange(e)}}/>
                             {/* jsx要有结束标签/ */}
                         </div>
@@ -54,6 +74,7 @@ class Login extends React.Component {
                                 id="exampleInputPassword1" 
                                 placeholder="请输入密码"
                                 name="password"
+                                onKeyUp={e=>{this.inputOnKeyUp(e)}}
                                 onChange={e=>{this.inputChange(e)}}/>
                         </div>
                         

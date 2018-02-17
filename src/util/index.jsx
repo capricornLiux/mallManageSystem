@@ -32,6 +32,27 @@ class Util {
     doLogin(){
         window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`
     }
+    /**
+     * 获取url字段
+     * @param {名字} name 
+     */
+    getUrlParam(name){
+        const queryString = window.location.search.split('?')[1] || '';
+        const reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");  // /(^|&)param=([^&]*)(&|$)/
+        const result = queryString.match(reg);
+        return result ? decodeURIComponent(result[2]) : null;
+    }
+
+    /**
+     * 错误提示
+     * 
+     * @param {错误信息} errMsg 
+     * @memberof Util
+     */
+    errorTips(errMsg){
+        alert(errMsg||'error');
+    }
+
 }
 
 export default Util;
