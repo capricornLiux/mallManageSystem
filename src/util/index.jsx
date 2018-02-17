@@ -7,7 +7,8 @@ class Util {
                 url: param.url || '',
                 dataType: param.dataType || 'json',
                 data: param.data || null,
-                success(res) {
+                // 注意里面的this
+                    success: res => {
                     // console.log(res);
                     if (res.status === 0) {
                         // 成功
@@ -68,8 +69,7 @@ class Util {
      */
     setStorage(name, data) {
         let dataType = typeof data;
-        if (dataType === 'object') {
-            ;
+        if (dataType === 'object') {;
             localStorage.setItem(name, JSON.stringify(data));
         } else if (['number', 'string', 'boolean'].indexOf(dataType) >= 0) {
             localStorage.setItem(name, data);
@@ -80,13 +80,13 @@ class Util {
 
     /**
      * 读取localstorage的信息
-     * 
-     * @param {any} name 
+     *
+     * @param {any} name
      * @memberof Util
      */
-    getStorage(name){
+    getStorage(name) {
         let data = localStorage.getItem(name);
-        if(data){
+        if (data) {
             return JSON.parse(data);
         } else {
             return '';
@@ -95,11 +95,11 @@ class Util {
 
     /**
      * 删除localstorage内容
-     * 
-     * @param {any} name 
+     *
+     * @param {any} name
      * @memberof Util
      */
-    removeStorage(name){
+    removeStorage(name) {
         localStorage.removeItem(name);
     }
 
