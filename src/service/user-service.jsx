@@ -21,5 +21,17 @@ class User {
         }
         return {status: true, msg: '用户名和密码合法'}
     }
+
+    /**
+     * 退出登录
+     * 
+     * @memberof User
+     */
+    logout(){
+        return util.request({
+            type: 'post',
+            url: '/user/logout.do'
+        })
+    }
 }
 export default User;

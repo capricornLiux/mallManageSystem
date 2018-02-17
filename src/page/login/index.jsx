@@ -39,8 +39,13 @@ class Login extends React.Component {
         let checkLoginInfoResult = userService.checkLoginInfo(loginInfo);
         if(checkLoginInfoResult.status){
             userService.login(loginInfo).then((res)=>{
+                
+                // 如果在localstorage中存储对象, 会调用toString方法存储, 结果是[object Object]
+                util.setStorage('userInfo', res);
+
                 // 登录成功,跳转页面
                 this.props.history.push(this.state.redirect);
+                
             }).catch((errMsg)=>{
                 // 错误提示
                 util.errorTips(errMsg);

@@ -89,6 +89,10 @@ module.exports = {
             '/manage': {
                 target: 'http://admintest.happymmall.com',
                 changeOrigin: true
+            },
+            '/user/logout.do': { // 单独设置登出接口请求代理
+                target: 'http://admintest.happymmall.com',
+                changeOrigin: true
             }
         }
     },
