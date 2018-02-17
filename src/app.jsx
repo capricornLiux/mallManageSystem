@@ -9,6 +9,8 @@ import Layout from 'component/layout/index.jsx';
 
 import Login from 'page/login/index.jsx';
 
+import ErrorPage from 'page/error/index.jsx';
+
 class App extends React.Component{
   render(){
     return (
@@ -19,11 +21,9 @@ class App extends React.Component{
             <Layout>
               <Switch>
                 <Route exact path="/" component={Home}/>
-                {/* <Redirect from="*" to="/"/> */}
-                {/* You tried to redirect to the same route you're currently on: "/" */}
-
-                {/* <Route path="/product" component={Home}/>
-                <Route path="/product-category" component={Home}/> */}
+                <Route path="/product" component={Home}/>
+                <Route path="/product-category" component={Home}/>
+                <Route component={ErrorPage}/>
               </Switch>
             </Layout>
           )}/>
