@@ -15,14 +15,33 @@ class Login extends React.Component {
             redirect: util.getUrlParam('redirect') || '/'
         }
     }
+    /**
+     * 组件将要挂载
+     * 
+     * @memberof Login
+     */
     componentWillMount(){
-        document.title = '登录 - HAPPY MALL'
+        document.title = '登录 - HAPPY MALL';
     }
+
+    /**
+     * 光标在input时按下键盘触发的方法
+     * 
+     * @param {any} e 
+     * @memberof Login
+     */
     inputOnKeyUp(e){
         if(e.keyCode === 13){
             this.clickLogin();
         }
     }
+
+    /**
+     * input变化时触发的方法
+     * 
+     * @param {any} e 
+     * @memberof Login
+     */
     inputChange(e){
         let key = e.target.name;
         let value = e.target.value;
@@ -30,7 +49,12 @@ class Login extends React.Component {
             [key] : value
         })
     }
-    // 点击登录按钮
+    
+    /**
+     * 点击登录按钮触发的方法
+     * 
+     * @memberof Login
+     */
     clickLogin(){
         let loginInfo = {
             username: this.state.username,
@@ -55,6 +79,13 @@ class Login extends React.Component {
         }
         
     }
+
+    /**
+     * 渲染方法
+     * 
+     * @returns 
+     * @memberof Login
+     */
     render() {
         return (
             <div className="col-md-4 col-md-offset-4">
